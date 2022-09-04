@@ -13,15 +13,21 @@ namespace Business.Profiles
     {
         public NodeProfile()
         {
-            CreateMap<GetNodeResponseModel, NodeIndexViewModel>()
-                .ForMember(x => x.HardwareCPU, opt => opt.MapFrom(src => src.Hardware.Cpu))
-                .ForMember(x => x.HardwareDownloadSpeed, opt => opt.MapFrom(src => src.Hardware.DownloadSpeed))
-                .ForMember(x => x.HardwareRAM, opt => opt.MapFrom(src => src.Hardware.Ram))
-                .ForMember(x => x.HardwareStorage, opt => opt.MapFrom(src => src.Hardware.Storage))
-                .ForMember(x => x.TwitterLink, opt => opt.MapFrom(src => src.SocialMedia.TwitterLink))
-                .ForMember(x => x.TelegramLink, opt => opt.MapFrom(src => src.SocialMedia.TelegramLink))
-                .ForMember(x => x.DiscordLink, opt => opt.MapFrom(src => src.SocialMedia.DiscordLink))
-                .ForMember(x => x.WebPageLink, opt => opt.MapFrom(src => src.SocialMedia.WebPageLink));
+            CreateMap<GetNodeListResponseModel, NodeIndexViewModel>();
+            CreateMap<GetNodeDetailsReponseModel, NodeDetailsViewModel>()
+                .ForMember(x => x.ReviewRate, opt => opt.MapFrom(x => x.Review.Rate))
+                .ForMember(x => x.ReviewDifficulty, opt => opt.MapFrom(x => x.Review.Difficulty))
+                .ForMember(x => x.ReviewPrize, opt => opt.MapFrom(x => x.Review.Prize))
+                .ForMember(x => x.ReviewLock, opt => opt.MapFrom(x => x.Review.Lock))
+                .ForMember(x => x.ReviewComment, opt => opt.MapFrom(x => x.Review.Comment))
+                .ForMember(x => x.HardwareCPU, opt => opt.MapFrom(x => x.Hardware.Cpu))
+                .ForMember(x => x.HardwareRAM, opt => opt.MapFrom(x => x.Hardware.Ram))
+                .ForMember(x => x.HardwareStorage, opt => opt.MapFrom(x => x.Hardware.Storage))
+                .ForMember(x => x.HardwareDownloadSpeed, opt => opt.MapFrom(x => x.Hardware.DownloadSpeed))
+                .ForMember(x => x.TwitterLink, opt => opt.MapFrom(x => x.SocialMedia.TwitterLink))
+                .ForMember(x => x.TelegramLink, opt => opt.MapFrom(x => x.SocialMedia.TelegramLink))
+                .ForMember(x => x.WebPageLink, opt => opt.MapFrom(x => x.SocialMedia.WebPageLink))
+                .ForMember(x => x.DiscordLink, opt => opt.MapFrom(x => x.SocialMedia.DiscordLink));
         }
     }
 }

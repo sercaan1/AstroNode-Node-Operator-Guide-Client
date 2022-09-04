@@ -16,7 +16,6 @@ namespace Web.Controllers
             _nodeService = nodeService;
         }
 
-
         public async Task<IActionResult> Index()
         {
             var getAllNodesResponse = await _nodeService.GetAllAsync();
@@ -24,12 +23,8 @@ namespace Web.Controllers
             {
                 return View(getAllNodesResponse.Data);
             }
-            return View(getAllNodesResponse.Message);
-        }
 
-        public IActionResult Privacy()
-        {
-            return View();
+            return NotFound();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

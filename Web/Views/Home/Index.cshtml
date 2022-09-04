@@ -11,21 +11,53 @@
 <div class="row">
     @foreach (var node in Model)
     {
-        <div class="col-md-12 d-flex justify-content-between index-node-container">
-            <div class="d-flex">
-                <img class="node-image" src="~/img/logo1.png" alt="Node Logo" />
-                <div>@node.Name</div>
-            </div>
-            <div class="d-flex">
-                <div class="d-flex flex-column me-4">
-                    <div>CPU: @node.HardwareCPU</div>
-                    <div>RAM: @node.HardwareRAM</div>
+        <div class="col-md-4 col-sm-6">
+            <a class="node-container-a" asp-action="NodeDetails" asp-controller="Node" asp-route-id="@node.Id">
+                <div class="card p-3 mb-4">
+                    <div class="d-flex justify-content-between">
+                        <div class="d-flex flex-row align-items-center">
+                            <div> <img class="node-image" src="~/img/logo1.png" alt="Node Logo" /> </div>
+                            <div class="ms-3 c-details">
+                                <h5 class="mb-0">@node.Name</h5> <span>@(Math.Floor((DateTime.Now - node.StartDate).TotalDays)) days ago</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-row align-items-center">
+                        <div class="mt-4">
+                            <h5 class="mb-0">
+                                Rating:@if (node.ReviewRate != null)
+                                {
+                                    for (int i = 0; i < node.ReviewRate; i++)
+                                    {
+                                        <i class="fa-solid fa-star ms-2"></i>
+                                    }
+                                }
+                                else
+                                {
+                                    <span class="ms-2">-</span>
+                                }
+                            </h5>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-row align-items-center">
+                        <div class="mt-4">
+                            <h5 class="mb-0">
+                                Difficulty:@if (node.ReviewRate != null)
+                                {
+                                    for (int i = 0; i < node.ReviewDifficulty; i++)
+                                    {
+                                        <i class="fa-solid fa-wrench ms-2"></i>
+                                    }
+                                }
+                                else
+                                {
+                                    <span class="ms-2">-</span>
+                                }
+                            </h5>
+                        </div>
+                    </div>
                 </div>
-                <div class="d-flex flex-column">
-                    <div>Download Speed: @node.HardwareDownloadSpeed</div>
-                    <div>Storage: @node.HardwareStorage</div>
-                </div>
-            </div>
+            </a>
         </div>
     }
 </div>

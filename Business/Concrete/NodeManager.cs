@@ -20,39 +20,36 @@ namespace Business.Concrete
         {
         }
 
-        public async Task<IDataResult<List<NodeIndexViewModel>>> GetActiveNodesAsync()
-        {
-            return await GetAndMapNodes("Node/ActiveNodes");
-        }
-
         public async Task<IDataResult<List<NodeIndexViewModel>>> GetAllAsync()
         {
-            return await GetAndMapNodes("Node/AllNodes");
-        }
-
-        public Task<IDataResult<GetNodeResponseModel>> GetById(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<IDataResult<List<NodeIndexViewModel>>> GetDoneNodesAsync()
-        {
-            return await GetAndMapNodes("Node/DoneNodes");
-        }
-        private async Task<IDataResult<List<NodeIndexViewModel>>> GetAndMapNodes(string endPoint)
-        {
-            var httpResponseMessage = await httpClient.GetAsync(endPoint);
+            var httpResponseMessage = await httpClient.GetAsync("Node/AllNodes");
 
             if (httpResponseMessage.IsSuccessStatusCode)
             {
                 using var contentStream = await httpResponseMessage.Content.ReadAsStreamAsync();
 
-                var getNodeResponseModels = await JsonSerializer.DeserializeAsync<List<GetNodeResponseModel>>(contentStream, options);
+                var getNodeResponseModels = await JsonSerializer.DeserializeAsync<List<GetNodeListResponseModel>>(contentStream, options);
 
                 return new SuccessDataResult<List<NodeIndexViewModel>>(_mapper.Map<List<NodeIndexViewModel>>(getNodeResponseModels), Messages.ListedSuccessfully);
             }
 
             return new ErrorDataResult<List<NodeIndexViewModel>>(Messages.NotFound);
+        }
+
+        public async Task<IDataResult<NodeDetailsViewModel>> GetById(Guid id)
+        {
+            var httpResponseMessage = await httpClient.GetAsync("Node/" + id);
+
+            if (httpResponseMessage.IsSuccessStatusCode)
+            {
+                using var contentStream = await httpResponseMessage.Content.ReadAsStreamAsync();
+
+                var getNodeDetailsResponseModel = await JsonSerializer.DeserializeAsync<GetNodeDetailsReponseModel>(contentStream, options);
+
+                return new SuccessDataResult<NodeDetailsViewModel>(_mapper.Map<NodeDetailsViewModel>(getNodeDetailsResponseModel), Messages.ListedSuccessfully);
+            }
+
+            return new ErrorDataResult<NodeDetailsViewModel>(Messages.NotFound);
         }
     }
 }

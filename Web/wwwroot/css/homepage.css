@@ -1,12 +1,56 @@
-﻿.index-node-container {
+﻿/*.index-node-container {
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
     padding: 25px;
     margin: 10px;
+}*/
+
+.node-container-a {
+    text-decoration: none;
+    color: #222831;
+}
+
+.node-container-a:hover {
+    cursor: pointer;
+    color: #222831;
+}
+
+.card {
+    border: none;
+    border-radius: 10px
+}
+
+.c-details span {
+    font-weight: 300;
+    font-size: 13px
 }
 
 .node-image {
-    margin-right: 25px;
     width: 50px;
     height: 50px;
-    border-radius: 50%
+    background-color: #eee;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 39px
+}
+
+.badge span {
+    background-color: #fffbec;
+    width: 60px;
+    height: 25px;
+    padding-bottom: 3px;
+    border-radius: 5px;
+    display: flex;
+    color: #fed85d;
+    justify-content: center;
+    align-items: center
+}
+
+.fa-star {
+    color: #ffa952;
+}
+
+.fa-wrench {
+    color: #38598b;
 }

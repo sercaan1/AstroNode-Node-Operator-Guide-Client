@@ -8,6 +8,7 @@ namespace Common.Models.Integration.Hardwares
 {
     public class GetHardwareResponseModel
     {
+        public string Id { get; set; }
         public string Cpu { get; set; }
         public string Ram { get; set; }
         public string Storage { get; set; }

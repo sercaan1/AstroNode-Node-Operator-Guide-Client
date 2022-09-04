@@ -8,6 +8,7 @@ namespace Common.Models.Integration.SocialMedias
 {
     public class GetSocialMediaResponseModel
     {
+        public string Id { get; set; }
         public string TwitterLink { get; set; }
         public string TelegramLink { get; set; }
         public string WebPageLink { get; set; }
