@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Web</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/app.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header>
+        <div class="wrapper">
+            <nav id="sidebar" class="sidebar js-sidebar">
+                <div class="sidebar-content js-simplebar mt-3">
+                    <a class="sidebar-brand" asp-controller="Home" asp-action="Index">
+                        <img src="~/img/logo1.png" style="width: 100px" alt="Alternate Text" />
+                        <br />
+                        <br />
+                        <span class="align-middle fs-3">AstroNode</span>
+                    </a>
+                    <ul class="sidebar-nav">
+                        <li style="text-decoration:none">
+                            <a class="sidebar-link ms-0" asp-action="Index" asp-controller="Home">
+                                <i data-feather="sliders"></i> <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-header">
+                            New Contents
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" asp-action="Create" asp-controller="Node" asp-area="Admin">
+                                <i class="align-middle" data-feather="user"></i> <span class="align-middle">Create Node</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-header">
+                            Lists
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" asp-action="List" asp-controller="Node" asp-area="Admin">
+                                <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Node List</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div class="main">
+                <nav class="navbar navbar-expand navbar-light navbar-bg">
+                    <a class="sidebar-toggle js-sidebar-toggle">
+                        <i class="hamburger align-self-center"></i>
+                    </a>
+                    <div class="navbar-collapse collapse">
+                        <ul class="navbar-nav navbar-align">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
+                                    <span class="text-dark">asdasd</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <form asp-action="Logout" asp-controller="User" asp-area="" method="post">
+                                    <button class="btn nav-link text-dark" type="submit">Logout</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+                <div class="p-4" role="main">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </header>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="~/js/app.js"></script>
+    <script src="path/to/vanilla.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

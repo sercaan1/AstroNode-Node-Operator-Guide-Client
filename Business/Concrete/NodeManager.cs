@@ -20,6 +20,29 @@ namespace Business.Concrete
         {
         }
 
+        public async Task<IDataResult<NodeDetailsViewModel>> AddAsync(NodeCreateViewModel vm)
+        {
+            var postNodeRequestModel = _mapper.Map<PostNodeRequestModel>(vm);
+            postNodeRequestModel.Hardware.NodeId = DummyNode.NodeId;
+            postNodeRequestModel.SocialMedia.NodeId = DummyNode.NodeId;
+            postNodeRequestModel.Review.NodeId = DummyNode.NodeId;
+
+            var jsonContent = JsonSerializer.Serialize(postNodeRequestModel);
+
+            var requestContent = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+
+            var response = await httpClient.PostAsync("Node", requestContent);
+            if (response.IsSuccessStatusCode)
+            {
+                var content = await response.Content.ReadAsStreamAsync();
+                var createdNode = await JsonSerializer.DeserializeAsync<GetNodeDetailsReponseModel>(content, options);
+
+                return new SuccessDataResult<NodeDetailsViewModel>(_mapper.Map<NodeDetailsViewModel>(createdNode), Messages.AddSuccessfully);
+            }
+
+            return new ErrorDataResult<NodeDetailsViewModel>(Messages.AddFail);
+        }
+
         public async Task<IDataResult<List<NodeIndexViewModel>>> GetAllAsync()
         {
             var httpResponseMessage = await httpClient.GetAsync("Node/AllNodes");

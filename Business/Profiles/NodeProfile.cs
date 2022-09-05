@@ -14,6 +14,7 @@ namespace Business.Profiles
         public NodeProfile()
         {
             CreateMap<GetNodeListResponseModel, NodeIndexViewModel>();
+
             CreateMap<GetNodeDetailsReponseModel, NodeDetailsViewModel>()
                 .ForMember(x => x.ReviewRate, opt => opt.MapFrom(x => x.Review.Rate))
                 .ForMember(x => x.ReviewDifficulty, opt => opt.MapFrom(x => x.Review.Difficulty))
@@ -28,6 +29,8 @@ namespace Business.Profiles
                 .ForMember(x => x.TelegramLink, opt => opt.MapFrom(x => x.SocialMedia.TelegramLink))
                 .ForMember(x => x.WebPageLink, opt => opt.MapFrom(x => x.SocialMedia.WebPageLink))
                 .ForMember(x => x.DiscordLink, opt => opt.MapFrom(x => x.SocialMedia.DiscordLink));
+
+            CreateMap<NodeCreateViewModel, PostNodeRequestModel>();
         }
     }
 }

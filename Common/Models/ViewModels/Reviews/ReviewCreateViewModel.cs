@@ -4,16 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Common.Models.Integration.Reviews
+namespace Common.Models.ViewModels.Reviews
 {
-    public class GetReviewResponseModel
+    public class ReviewCreateViewModel
     {
-        public string Id { get; set; }
-        public string Comment { get; set; }
         public int? Rate { get; set; }
         public int? Difficulty { get; set; }
         public string Prize { get; set; }
         public string Lock { get; set; }
-        public string NodeId { get; set; }
+        public string Comment { get; set; }
     }
 }

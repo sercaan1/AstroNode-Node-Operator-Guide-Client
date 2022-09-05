@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Common.Models.Integration.Reviews
 {
-    public class GetReviewResponseModel
+    public class PostReviewRequestModel
     {
-        public string Id { get; set; }
         public string Comment { get; set; }
         public int? Rate { get; set; }
         public int? Difficulty { get; set; }
