@@ -43,6 +43,16 @@ namespace Business.Concrete
             return new ErrorDataResult<NodeDetailsViewModel>(Messages.AddFail);
         }
 
+        public async Task<bool> DeleteAsync(Guid id)
+        {
+            var deleteResponseMessage = await httpClient.DeleteAsync("Node/" + id);
+
+            if (deleteResponseMessage.IsSuccessStatusCode)
+                return true;
+
+            return false;
+        }
+
         public async Task<IDataResult<List<NodeIndexViewModel>>> GetAllAsync()
         {
             var httpResponseMessage = await httpClient.GetAsync("Node/AllNodes");
@@ -59,7 +69,7 @@ namespace Business.Concrete
             return new ErrorDataResult<List<NodeIndexViewModel>>(Messages.NotFound);
         }
 
-        public async Task<IDataResult<NodeDetailsViewModel>> GetById(Guid id)
+        public async Task<IDataResult<NodeDetailsViewModel>> GetByIdAsync(Guid id)
         {
             var httpResponseMessage = await httpClient.GetAsync("Node/" + id);
 

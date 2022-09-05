@@ -12,7 +12,8 @@ namespace Business.Abstracts
     public interface INodeService
     {
         Task<IDataResult<List<NodeIndexViewModel>>> GetAllAsync();
-        Task<IDataResult<NodeDetailsViewModel>> GetById(Guid id);
+        Task<IDataResult<NodeDetailsViewModel>> GetByIdAsync(Guid id);
         Task<IDataResult<NodeDetailsViewModel>> AddAsync(NodeCreateViewModel vm);
+        Task<bool> DeleteAsync(Guid id);
     }
 }

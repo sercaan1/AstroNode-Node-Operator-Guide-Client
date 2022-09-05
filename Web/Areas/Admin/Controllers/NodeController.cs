@@ -84,13 +84,26 @@ namespace Web.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> NodeDetails(string id)
         {
-            var getNodeDetailsResponse = await _nodeService.GetById(new Guid(id));
+            var getNodeDetailsResponse = await _nodeService.GetByIdAsync(new Guid(id));
             if (getNodeDetailsResponse.IsSuccess)
             {
                 return View(getNodeDetailsResponse.Data);
             }
 
             return NotFound();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(string id)
+        {
+            var deleteNodeResponse = await _nodeService.DeleteAsync(new Guid(id));
+
+            if (deleteNodeResponse)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            return BadRequest();
         }
     }
 }

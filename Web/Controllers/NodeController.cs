@@ -13,7 +13,7 @@ namespace Web.Controllers
         }
         public async Task<IActionResult> NodeDetails(string id)
         {
-            var getNodeDetailsResponse = await _nodeService.GetById(new Guid(id));
+            var getNodeDetailsResponse = await _nodeService.GetByIdAsync(new Guid(id));
             if (getNodeDetailsResponse.IsSuccess)
             {
                 return View(getNodeDetailsResponse.Data);
