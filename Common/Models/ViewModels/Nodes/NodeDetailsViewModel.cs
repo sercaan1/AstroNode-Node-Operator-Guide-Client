@@ -8,6 +8,7 @@ namespace Common.Models.ViewModels.Nodes
 {
     public class NodeDetailsViewModel
     {
+        public string Id { get; set; }
         public string Name { get; set; }
         public string Image { get; set; }
         public DateTime StartDate { get; set; }

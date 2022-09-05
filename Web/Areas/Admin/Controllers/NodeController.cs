@@ -1,4 +1,5 @@
-﻿using Business.Abstracts;
+﻿using AutoMapper;
+using Business.Abstracts;
 using Common.Models.ViewModels.Nodes;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,10 +9,12 @@ namespace Web.Areas.Admin.Controllers
     public class NodeController : Controller
     {
         private readonly INodeService _nodeService;
+        private readonly IMapper _mapper;
 
-        public NodeController(INodeService nodeService)
+        public NodeController(INodeService nodeService, IMapper mapper)
         {
             _nodeService = nodeService;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -34,6 +37,60 @@ namespace Web.Areas.Admin.Controllers
                 return BadRequest(createNodeResponse.Message);
             }
             return View(vm);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ActiveNodes()
+        {
+            var getNodesResponse = await _nodeService.GetAllAsync();
+
+            if (getNodesResponse.IsSuccess)
+            {
+                var nodesList = _mapper.Map<List<NodeListViewModel>>(getNodesResponse.Data);
+                return View(nodesList.Where(x => x.EndDate > DateTime.Now && x.StartDate < DateTime.Now).ToList());
+            }
+
+            return NotFound(getNodesResponse.Message);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> DoneNodes()
+        {
+            var getNodesResponse = await _nodeService.GetAllAsync();
+
+            if (getNodesResponse.IsSuccess)
+            {
+                var nodesList = _mapper.Map<List<NodeListViewModel>>(getNodesResponse.Data);
+                return View(nodesList.Where(x => x.EndDate < DateTime.Now).ToList());
+            }
+
+            return NotFound(getNodesResponse.Message);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> IncomingNodes()
+        {
+            var getNodesResponse = await _nodeService.GetAllAsync();
+
+            if (getNodesResponse.IsSuccess)
+            {
+                var nodesList = _mapper.Map<List<NodeListViewModel>>(getNodesResponse.Data);
+                return View(nodesList.Where(x => x.StartDate > DateTime.Now).ToList());
+            }
+
+            return NotFound(getNodesResponse.Message);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> NodeDetails(string id)
+        {
+            var getNodeDetailsResponse = await _nodeService.GetById(new Guid(id));
+            if (getNodeDetailsResponse.IsSuccess)
+            {
+                return View(getNodeDetailsResponse.Data);
+            }
+
+            return NotFound();
         }
     }
 }

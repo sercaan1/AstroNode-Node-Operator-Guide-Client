@@ -14,6 +14,7 @@ namespace Business.Profiles
         public NodeProfile()
         {
             CreateMap<GetNodeListResponseModel, NodeIndexViewModel>();
+            CreateMap<NodeIndexViewModel, NodeListViewModel>();
 
             CreateMap<GetNodeDetailsReponseModel, NodeDetailsViewModel>()
                 .ForMember(x => x.ReviewRate, opt => opt.MapFrom(x => x.Review.Rate))

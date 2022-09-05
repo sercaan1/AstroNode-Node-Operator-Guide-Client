@@ -1,53 +1,24 @@
-﻿@model List<NodeIndexViewModel>
-@{
-    ViewData["Title"] = "Home Page";
-    var color = string.Empty;
-}
+﻿@model List<NodeListViewModel>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@{
+    ViewData["Title"] = "Active Nodes";
+}
 
 <div class="row">
     @foreach (var node in Model)
     {
         <div class="col-md-4 col-sm-6">
-            <a class="node-container-a" asp-action="NodeDetails" asp-controller="Node" asp-route-id="@node.Id">
+            <a class="node-container-a" asp-area="Admin" asp-action="NodeDetails" asp-controller="Node" asp-route-id="@node.Id">
                 <div class="card p-3 mb-4">
                     <div class="d-flex justify-content-between">
                         <div class="d-flex flex-row align-items-center">
                             <div> <img class="node-image" src="~/img/logo1.png" alt="Node Logo" /> </div>
                             <div class="ms-3 c-details">
-                                <h5 class="mb-0">@node.Name</h5> 
-                                @if (node.StartDate > DateTime.Now)
-                                {
-                                    <span>
-                                        @(Math.Floor((node.StartDate - DateTime.Now).TotalDays)) days to come
-                                    </span>
-                                }
-                                else
-                                {
-                                    <span>
-                                        @(Math.Floor((DateTime.Now - node.StartDate).TotalDays)) days ago
-                                    </span>
-                                }
+                                <h5 class="mb-0">@node.Name</h5> <span>@(Math.Floor((node.StartDate - DateTime.Now).TotalDays)) days to come</span>
                             </div>
                         </div>
                         <div>
-                            @if (node.EndDate < DateTime.Now)
-                            {
-                                color = "color: #d63447;";
-                            }
-                            else if (node.StartDate > DateTime.Now)
-                            {
-                                color = "color: #005792";
-                            }
-                            else
-                            {
-                                color = "color: #7dd87d";
-                            }
-                            <i style="@color" class="fa-solid fa-circle fs-5"></i>
+                            <i style="color: #005792" class="fa-solid fa-circle fs-5"></i>
                         </div>
                     </div>
                     <div class="d-flex flex-row align-items-center">
