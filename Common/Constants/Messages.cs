@@ -14,5 +14,7 @@ namespace Common.Constants
         public const string NodeAlreadyExist = "Node_Already_Exist";
         public const string NotFound = "Not_Found";
         public const string FoundSuccessfully = "Found_Successfully";
+        public const string UpdatedSuccessfully = "Updated_Successfully";
+        public const string UpdateFail = "Update_Fail";
     }
 }

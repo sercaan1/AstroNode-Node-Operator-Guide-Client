@@ -14,6 +14,7 @@ namespace Business.Profiles
         public SocialMediaProfile()
         {
             CreateMap<SocialMediaCreateViewModel, PostSocialMediaRequestModel>();
+            CreateMap<SocialMediaUpdateViewModel, PutSocialMediaRequestModel>();
         }
     }
 }

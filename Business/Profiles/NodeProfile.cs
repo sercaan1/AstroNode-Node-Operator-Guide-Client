@@ -31,7 +31,23 @@ namespace Business.Profiles
                 .ForMember(x => x.WebPageLink, opt => opt.MapFrom(x => x.SocialMedia.WebPageLink))
                 .ForMember(x => x.DiscordLink, opt => opt.MapFrom(x => x.SocialMedia.DiscordLink));
 
+            CreateMap<NodeDetailsViewModel, NodeUpdateViewModel>()
+                .ForPath(x => x.SocialMedia.TelegramLink, opt => opt.MapFrom(x => x.TelegramLink))
+                .ForPath(x => x.SocialMedia.TwitterLink, opt => opt.MapFrom(x => x.TwitterLink))
+                .ForPath(x => x.SocialMedia.DiscordLink, opt => opt.MapFrom(x => x.DiscordLink))
+                .ForPath(x => x.SocialMedia.WebPageLink, opt => opt.MapFrom(x => x.WebPageLink))
+                .ForPath(x => x.Hardware.CPU, opt => opt.MapFrom(x => x.HardwareCPU))
+                .ForPath(x => x.Hardware.RAM, opt => opt.MapFrom(x => x.HardwareRAM))
+                .ForPath(x => x.Hardware.Storage, opt => opt.MapFrom(x => x.HardwareStorage))
+                .ForPath(x => x.Hardware.DownloadSpeed, opt => opt.MapFrom(x => x.HardwareDownloadSpeed))
+                .ForPath(x => x.Review.Rate, opt => opt.MapFrom(x => x.ReviewRate))
+                .ForPath(x => x.Review.Comment, opt => opt.MapFrom(x => x.ReviewComment))
+                .ForPath(x => x.Review.Lock, opt => opt.MapFrom(x => x.ReviewLock))
+                .ForPath(x => x.Review.Difficulty, opt => opt.MapFrom(x => x.ReviewDifficulty))
+                .ForPath(x => x.Review.Prize, opt => opt.MapFrom(x => x.ReviewPrize));
+
             CreateMap<NodeCreateViewModel, PostNodeRequestModel>();
+            CreateMap<NodeUpdateViewModel, PutNodeRequestModel>();
         }
     }
 }

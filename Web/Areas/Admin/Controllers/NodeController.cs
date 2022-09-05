@@ -105,5 +105,35 @@ namespace Web.Areas.Admin.Controllers
 
             return BadRequest();
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Update(string id)
+        {
+            var getNodeResponse = await _nodeService.GetByIdAsync(new Guid(id));
+
+            if (getNodeResponse.IsSuccess)
+            {
+                return View(_mapper.Map<NodeUpdateViewModel>(getNodeResponse.Data));
+            }
+
+            return NotFound();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Update(NodeUpdateViewModel vm)
+        {
+            if (ModelState.IsValid)
+            {
+                var updateNodeResponse = await _nodeService.UpdateAsync(vm);
+
+                if (updateNodeResponse.IsSuccess)
+                {
+                    return RedirectToAction("NodeDetails", "Node", new { id = vm.Id });
+                }
+
+                return NotFound(updateNodeResponse.Message);
+            }
+            return View(vm);
+        }
     }
 }

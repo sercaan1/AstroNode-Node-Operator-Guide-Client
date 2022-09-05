@@ -14,6 +14,7 @@ namespace Business.Profiles
         public HardwareProfile()
         {
             CreateMap<HardwareCreateViewModel, PostHardwareRequestModel>();
+            CreateMap<HardwareUpdateViewModel, PutHardwareRequestModel>();
         }
     }
 }

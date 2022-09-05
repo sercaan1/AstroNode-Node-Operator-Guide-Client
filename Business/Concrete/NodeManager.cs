@@ -84,5 +84,28 @@ namespace Business.Concrete
 
             return new ErrorDataResult<NodeDetailsViewModel>(Messages.NotFound);
         }
+
+        public async Task<IDataResult<NodeDetailsViewModel>> UpdateAsync(NodeUpdateViewModel vm)
+        {
+            var putNodeRequestModel = _mapper.Map<PutNodeRequestModel>(vm);
+            putNodeRequestModel.Hardware.NodeId = vm.Id;
+            putNodeRequestModel.SocialMedia.NodeId = vm.Id;
+            putNodeRequestModel.Review.NodeId = vm.Id;
+
+            var jsonContent = JsonSerializer.Serialize(putNodeRequestModel);
+
+            var requestContent = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+
+            var response = await httpClient.PutAsync("Node", requestContent);
+            if (response.IsSuccessStatusCode)
+            {
+                var content = await response.Content.ReadAsStreamAsync();
+                var updatedNode = await JsonSerializer.DeserializeAsync<GetNodeDetailsReponseModel>(content, options);
+
+                return new SuccessDataResult<NodeDetailsViewModel>(_mapper.Map<NodeDetailsViewModel>(updatedNode), Messages.UpdatedSuccessfully);
+            }
+
+            return new ErrorDataResult<NodeDetailsViewModel>(Messages.UpdateFail);
+        }
     }
 }

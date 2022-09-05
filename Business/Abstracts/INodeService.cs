@@ -14,6 +14,7 @@ namespace Business.Abstracts
         Task<IDataResult<List<NodeIndexViewModel>>> GetAllAsync();
         Task<IDataResult<NodeDetailsViewModel>> GetByIdAsync(Guid id);
         Task<IDataResult<NodeDetailsViewModel>> AddAsync(NodeCreateViewModel vm);
+        Task<IDataResult<NodeDetailsViewModel>> UpdateAsync(NodeUpdateViewModel vm);
         Task<bool> DeleteAsync(Guid id);
     }
 }
