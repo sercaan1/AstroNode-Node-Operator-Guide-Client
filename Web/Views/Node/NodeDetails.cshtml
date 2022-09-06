@@ -7,7 +7,14 @@
     <div class="card p-3 mb-2">
         <div class="d-flex justify-content-between">
             <div class="d-flex flex-row align-items-center">
-                <div> <img class="node-image" src="~/img/logo1.png" alt="Node Logo" /> </div>
+                @if (Model.Image != null)
+                {
+                    <div><img class="node-image" src="data:image/jpeg;base64,@Model.Image" alt="Node Logo" /></div>
+                }
+                else
+                {
+                    <div><img class="node-image" src="~/img/logo1.png" alt="Node Logo" /></div>
+                }
                 <div class="ms-3 c-details">
                     <h3 class="mb-0">@Model.Name</h3> <span>@(Math.Floor((DateTime.Now - Model.StartDate).TotalDays)) days ago</span>
                 </div>

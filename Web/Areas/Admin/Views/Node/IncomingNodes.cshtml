@@ -12,7 +12,14 @@
                 <div class="card p-3 mb-4">
                     <div class="d-flex justify-content-between">
                         <div class="d-flex flex-row align-items-center">
-                            <div> <img class="node-image" src="~/img/logo1.png" alt="Node Logo" /> </div>
+                            @if (node.Image != null)
+                            {
+                                <div><img class="node-image" src="data:image/jpeg;base64,@node.Image" alt="Node Logo" /></div>
+                            }
+                            else
+                            {
+                                <div><img class="node-image" src="~/img/logo1.png" alt="Node Logo" /></div>
+                            }
                             <div class="ms-3 c-details">
                                 <h5 class="mb-0">@node.Name</h5> <span>@(Math.Floor((node.StartDate - DateTime.Now).TotalDays)) days to come</span>
                             </div>

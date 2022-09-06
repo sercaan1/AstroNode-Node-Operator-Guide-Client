@@ -2,6 +2,7 @@
 using Business.Abstracts;
 using Common.Models.ViewModels.Nodes;
 using Microsoft.AspNetCore.Mvc;
+using Web.Extensions;
 
 namespace Web.Areas.Admin.Controllers
 {
@@ -28,6 +29,10 @@ namespace Web.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (vm.ImageFile != null)
+                {
+                    vm.Image = await vm.ImageFile.GetAsBase64String();
+                }
                 var createNodeResponse = await _nodeService.AddAsync(vm);
 
                 if (createNodeResponse.IsSuccess)
@@ -124,6 +129,10 @@ namespace Web.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (vm.ImageFile != null)
+                {
+                    vm.Image = await vm.ImageFile.GetAsBase64String();
+                }
                 var updateNodeResponse = await _nodeService.UpdateAsync(vm);
 
                 if (updateNodeResponse.IsSuccess)
