@@ -1,11 +1,19 @@
 using Business.Profiles;
+using Common.Models;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 using Web.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddFluentValidationAutoValidation();
+
+builder.Services.AddValidatorsFromAssembly(typeof(IValidationFile).Assembly);
 
 string uri = builder.Configuration.GetValue<string>("ReplicaAPI");
 builder.Services.AddHttpClient("ReplicaAPI", HttpClient =>
