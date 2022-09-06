@@ -20,7 +20,7 @@ namespace Common.Models.FluentValidators.NodeValidators
 
             RuleFor(x => x.StartDate).NotEmpty().WithMessage("This field is required.")
                 .LessThan(x => x.EndDate).WithMessage("Start date cannot be later than end date.")
-                .Must(BeAValidDate).WithMessage("Start date cannot be that older.");
+                .Must(BeAValidDate).WithMessage("Start date cannot be that old-timer.");
 
             RuleFor(x => x.EndDate).NotEmpty().WithMessage("This field is required.")
                 .GreaterThan(x => x.StartDate).WithMessage("End date cannot be older than start date.");
