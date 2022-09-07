@@ -73,7 +73,7 @@ namespace Web.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> IncomingNodes()
+        public async Task<IActionResult> UpcomingNodes()
         {
             var getNodesResponse = await _nodeService.GetAllAsync();
 

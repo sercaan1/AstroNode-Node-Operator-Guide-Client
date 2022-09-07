@@ -18,10 +18,29 @@ namespace Web.Controllers
 
         public async Task<IActionResult> Index()
         {
+            return View();
+        }
+
+        public async Task<IActionResult> FilterNode(string selection)
+        {
             var getAllNodesResponse = await _nodeService.GetAllAsync();
             if (getAllNodesResponse.IsSuccess)
             {
-                return View(getAllNodesResponse.Data);
+                if (selection == "active")
+                {
+                    var activeNodesList = getAllNodesResponse.Data.Where(x => x.StartDate < DateTime.Now && x.EndDate > DateTime.Now).ToList();
+                    return PartialView("_FilterNode", activeNodesList);
+                }
+                else if (selection == "done")
+                {
+                    var doneNodesList = getAllNodesResponse.Data.Where(x => x.EndDate < DateTime.Now).ToList();
+                    return PartialView("_FilterNode", doneNodesList);
+                }
+                else
+                {
+                    var upcomingNodesList = getAllNodesResponse.Data.Where(x => x.StartDate > DateTime.Now).ToList();
+                    return PartialView("_FilterNode", upcomingNodesList);
+                }
             }
 
             return NotFound();

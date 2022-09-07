@@ -54,3 +54,15 @@
 .fa-wrench {
     color: #38598b;
 }
+
+.node-list-button {
+    text-decoration: none;
+    font-size: 24px;
+    color: #c4c1e0;
+    font-weight: 500;
+}
+
+.node-list-button:hover {
+    cursor: pointer;
+    color: #8971d0;
+}
