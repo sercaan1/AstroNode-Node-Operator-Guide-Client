@@ -5,6 +5,7 @@ using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 using Web.Extensions;
+using Web.Handlers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,11 +20,21 @@ string uri = builder.Configuration.GetValue<string>("ReplicaAPI");
 builder.Services.AddHttpClient("ReplicaAPI", HttpClient =>
 {
     HttpClient.BaseAddress = new Uri(uri);
-});
+})
+.AddHttpMessageHandler<AuthTokenHandler>();
 
 builder.Services.AddAutoMapper(typeof(IProfile).Assembly);
 
 builder.Services.AddBusinessServices();
+
+builder.Services.AddHttpContextAccessor();
+
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromHours(2);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
 
 var app = builder.Build();
 
@@ -40,7 +51,11 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
+
 app.UseAuthorization();
+
+app.UseSession();
 
 app.MapControllerRoute(
     name: "areas",

@@ -5,9 +5,11 @@ using Common.Models.Integration.Nodes;
 using Common.Models.ViewModels.Nodes;
 using Common.Utilities.Abstracts;
 using Common.Utilities.Concrete;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -29,9 +31,10 @@ namespace Business.Concrete
 
             var jsonContent = JsonSerializer.Serialize(postNodeRequestModel);
 
-            var requestContent = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+            var requestContent = new HttpRequestMessage(HttpMethod.Post, "Node");
+            requestContent.Content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
-            var response = await httpClient.PostAsync("Node", requestContent);
+            var response = await httpClient.SendAsync(requestContent);
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStreamAsync();
@@ -43,14 +46,14 @@ namespace Business.Concrete
             return new ErrorDataResult<NodeDetailsViewModel>(Messages.AddFail);
         }
 
-        public async Task<bool> DeleteAsync(Guid id)
+        public async Task<IResult> DeleteAsync(Guid id)
         {
             var deleteResponseMessage = await httpClient.DeleteAsync("Node/" + id);
 
             if (deleteResponseMessage.IsSuccessStatusCode)
-                return true;
+                return new SuccessResult(Messages.DeleteSuccessfully);
 
-            return false;
+            return new ErrorResult(Messages.DeleteFail);
         }
 
         public async Task<IDataResult<List<NodeIndexViewModel>>> GetAllAsync()

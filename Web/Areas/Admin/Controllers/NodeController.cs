@@ -2,6 +2,7 @@
 using Business.Abstracts;
 using Common.Models.ViewModels.Nodes;
 using Microsoft.AspNetCore.Mvc;
+using System.Net.Http.Headers;
 using Web.Extensions;
 
 namespace Web.Areas.Admin.Controllers
@@ -25,6 +26,7 @@ namespace Web.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(NodeCreateViewModel vm)
         {
             if (ModelState.IsValid)
@@ -99,11 +101,12 @@ namespace Web.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(string id)
         {
             var deleteNodeResponse = await _nodeService.DeleteAsync(new Guid(id));
 
-            if (deleteNodeResponse)
+            if (deleteNodeResponse.IsSuccess)
             {
                 return RedirectToAction("Index", "Home");
             }
@@ -125,6 +128,7 @@ namespace Web.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Update(NodeUpdateViewModel vm)
         {
             if (ModelState.IsValid)

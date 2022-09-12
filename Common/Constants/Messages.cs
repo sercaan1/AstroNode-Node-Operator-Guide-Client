@@ -16,5 +16,7 @@ namespace Common.Constants
         public const string FoundSuccessfully = "Found_Successfully";
         public const string UpdatedSuccessfully = "Updated_Successfully";
         public const string UpdateFail = "Update_Fail";
+        public const string DeleteSuccessfully = "Delete_Successfully";
+        public const string DeleteFail = "Delete_Fail";
     }
 }

@@ -1,4 +1,6 @@
-﻿using Business.Abstracts;
+﻿using AutoMapper;
+using Business.Abstracts;
+using Common.Models.ViewModels.Users;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Serialization;
 using System.Diagnostics;
@@ -10,10 +12,12 @@ namespace Web.Controllers
     public class HomeController : Controller
     {
         private readonly INodeService _nodeService;
+        private readonly IUserService _userService;
 
-        public HomeController(INodeService nodeService)
+        public HomeController(INodeService nodeService, IUserService userService)
         {
             _nodeService = nodeService;
+            _userService = userService;
         }
 
         public async Task<IActionResult> Index()
@@ -46,10 +50,28 @@ namespace Web.Controllers
             return NotFound();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        public IActionResult Login()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Login(LoginViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var loginResult = await _userService.LoginAsync(model);
+
+                if (loginResult.IsSuccess)
+                {
+                    HttpContext.Session.SetString("token", loginResult.Token);
+                    return RedirectToAction("Index", "Home", new { area = "Admin" });
+                }
+
+                return View(model);
+            }
+            return View(model);
         }
     }
 }
