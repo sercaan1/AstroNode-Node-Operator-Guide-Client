@@ -20,6 +20,7 @@ namespace Business.Concrete
     {
         public NodeManager(IHttpClientFactory httpClientFactory, IMapper mapper) : base(httpClientFactory, mapper)
         {
+
         }
 
         public async Task<IDataResult<NodeDetailsViewModel>> AddAsync(NodeCreateViewModel vm)
@@ -31,10 +32,10 @@ namespace Business.Concrete
 
             var jsonContent = JsonSerializer.Serialize(postNodeRequestModel);
 
-            var requestContent = new HttpRequestMessage(HttpMethod.Post, "Node");
-            requestContent.Content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+            var request = new HttpRequestMessage(HttpMethod.Post, "Node");
+            request.Content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
-            var response = await httpClient.SendAsync(requestContent);
+            var response = await httpClient.SendAsync(request);
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStreamAsync();
@@ -48,7 +49,8 @@ namespace Business.Concrete
 
         public async Task<IResult> DeleteAsync(Guid id)
         {
-            var deleteResponseMessage = await httpClient.DeleteAsync("Node/" + id);
+            var request = new HttpRequestMessage(HttpMethod.Delete, "Node/" + id);
+            var deleteResponseMessage = await httpClient.SendAsync(request);
 
             if (deleteResponseMessage.IsSuccessStatusCode)
                 return new SuccessResult(Messages.DeleteSuccessfully);
@@ -97,9 +99,11 @@ namespace Business.Concrete
 
             var jsonContent = JsonSerializer.Serialize(putNodeRequestModel);
 
-            var requestContent = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+            var request = new HttpRequestMessage(HttpMethod.Delete, "Node/" + vm.Id);
 
-            var response = await httpClient.PutAsync("Node", requestContent);
+            request.Content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+
+            var response = await httpClient.SendAsync(request);
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStreamAsync();
