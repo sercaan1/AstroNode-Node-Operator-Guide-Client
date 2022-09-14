@@ -99,7 +99,7 @@ namespace Business.Concrete
 
             var jsonContent = JsonSerializer.Serialize(putNodeRequestModel);
 
-            var request = new HttpRequestMessage(HttpMethod.Delete, "Node/" + vm.Id);
+            var request = new HttpRequestMessage(HttpMethod.Put, "Node/" + vm.Id);
 
             request.Content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 

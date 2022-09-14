@@ -13,7 +13,8 @@ namespace Web.Handlers
 
         protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
-            string token = _httpContextAccessor.HttpContext.Session.GetString("token");
+
+            string token = _httpContextAccessor.HttpContext.Session.GetString("Token");
 
             if (string.IsNullOrEmpty(token))
             {

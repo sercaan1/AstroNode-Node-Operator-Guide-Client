@@ -3,6 +3,7 @@ using Business.Abstracts;
 using Common.Models.ViewModels.Nodes;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Http.Headers;
+using Web.Attributes;
 using Web.Extensions;
 
 namespace Web.Areas.Admin.Controllers
@@ -20,6 +21,7 @@ namespace Web.Areas.Admin.Controllers
         }
 
         [HttpGet]
+        [RedirectToLoginIfNotAuthorized]
         public IActionResult Create()
         {
             return View();
@@ -47,6 +49,7 @@ namespace Web.Areas.Admin.Controllers
         }
 
         [HttpGet]
+        [RedirectToLoginIfNotAuthorized]
         public async Task<IActionResult> ActiveNodes()
         {
             var getNodesResponse = await _nodeService.GetAllAsync();
@@ -61,6 +64,7 @@ namespace Web.Areas.Admin.Controllers
         }
 
         [HttpGet]
+        [RedirectToLoginIfNotAuthorized]
         public async Task<IActionResult> DoneNodes()
         {
             var getNodesResponse = await _nodeService.GetAllAsync();
@@ -75,6 +79,7 @@ namespace Web.Areas.Admin.Controllers
         }
 
         [HttpGet]
+        [RedirectToLoginIfNotAuthorized]
         public async Task<IActionResult> UpcomingNodes()
         {
             var getNodesResponse = await _nodeService.GetAllAsync();
@@ -89,6 +94,7 @@ namespace Web.Areas.Admin.Controllers
         }
 
         [HttpGet]
+        [RedirectToLoginIfNotAuthorized]
         public async Task<IActionResult> NodeDetails(string id)
         {
             var getNodeDetailsResponse = await _nodeService.GetByIdAsync(new Guid(id));
@@ -115,6 +121,7 @@ namespace Web.Areas.Admin.Controllers
         }
 
         [HttpGet]
+        [RedirectToLoginIfNotAuthorized]
         public async Task<IActionResult> Update(string id)
         {
             var getNodeResponse = await _nodeService.GetByIdAsync(new Guid(id));

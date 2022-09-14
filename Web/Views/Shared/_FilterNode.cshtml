@@ -9,7 +9,7 @@
     {
         <div class="col-md-4 col-sm-6">
             <a class="node-container-a" asp-action="NodeDetails" asp-controller="Node" asp-route-id="@node.Id">
-                <div class="card p-3 mb-4">
+                <div class="card p-3 mb-4 node-container">
                     <div class="d-flex justify-content-between">
                         <div class="d-flex flex-row align-items-center">
                             @if (node.Image != null)
@@ -18,7 +18,7 @@
                             }
                             else
                             {
-                                <div><img class="node-image" src="~/img/logo1.png" alt="Node Logo" /></div>
+                                <div><img class="node-image" src="~/img/astronodelogo.png" alt="Node Logo" /></div>
                             }
                             <div class="ms-3 c-details">
                                 <h5 class="mb-0">@node.Name</h5>

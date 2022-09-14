@@ -1,8 +1,32 @@
-﻿/*.index-node-container {
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-    padding: 25px;
-    margin: 10px;
-}*/
+﻿.homepage-headline {
+    background-image: url(../img/logo.png);
+    background-size: 100% 120%;
+    color: #fdffcd;
+    background-repeat: no-repeat;
+    margin-bottom: 100px;
+}
+
+.how-it-works-title {
+    color: black;
+    font-size: 40px;
+    font-weight: 500;
+    margin-top: 50px;
+    margin-bottom: 10px;
+}
+
+.how-it-works-icon {
+    font-size: 30px;
+}
+
+.how-it-works-subtitle {
+    font-size: 30px;
+    font-weight: 400;
+    margin: 10px 0px;
+}
+
+.node-container {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
 
 .node-container-a {
     text-decoration: none;
