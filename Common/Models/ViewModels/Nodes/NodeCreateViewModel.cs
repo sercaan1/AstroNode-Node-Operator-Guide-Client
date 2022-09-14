@@ -1,4 +1,5 @@
-﻿using Common.Models.ViewModels.Hardwares;
+﻿using Common.Models.ViewModels.Guides;
+using Common.Models.ViewModels.Hardwares;
 using Common.Models.ViewModels.Reviews;
 using Common.Models.ViewModels.SocialMedias;
 using Microsoft.AspNetCore.Http;
@@ -20,5 +21,6 @@ namespace Common.Models.ViewModels.Nodes
         public HardwareCreateViewModel Hardware { get; set; }
         public ReviewCreateViewModel Review { get; set; }
         public SocialMediaCreateViewModel SocialMedia { get; set; }
+        public GuideCreateViewModel Guide { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Common.Models.Integration.Hardwares;
+﻿using Common.Models.Integration.Guides;
+using Common.Models.Integration.Hardwares;
 using Common.Models.Integration.Reviews;
 using Common.Models.Integration.SocialMedias;
 using System;
@@ -19,5 +20,6 @@ namespace Common.Models.Integration.Nodes
         public GetHardwareResponseModel Hardware { get; set; }
         public GetSocialMediaResponseModel SocialMedia { get; set; }
         public GetReviewResponseModel Review { get; set; }
+        public GetGuideResponseModel Guide { get; set; }
     }
 }

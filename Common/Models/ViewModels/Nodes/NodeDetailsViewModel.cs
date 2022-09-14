@@ -26,5 +26,6 @@ namespace Common.Models.ViewModels.Nodes
         public string TelegramLink { get; set; }
         public string WebPageLink { get; set; }
         public string DiscordLink { get; set; }
+        public string GuideDescription { get; set; }
     }
 }

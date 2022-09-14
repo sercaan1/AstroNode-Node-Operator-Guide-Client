@@ -29,7 +29,8 @@ namespace Business.Profiles
                 .ForMember(x => x.TwitterLink, opt => opt.MapFrom(x => x.SocialMedia.TwitterLink))
                 .ForMember(x => x.TelegramLink, opt => opt.MapFrom(x => x.SocialMedia.TelegramLink))
                 .ForMember(x => x.WebPageLink, opt => opt.MapFrom(x => x.SocialMedia.WebPageLink))
-                .ForMember(x => x.DiscordLink, opt => opt.MapFrom(x => x.SocialMedia.DiscordLink));
+                .ForMember(x => x.DiscordLink, opt => opt.MapFrom(x => x.SocialMedia.DiscordLink))
+                .ForMember(x => x.GuideDescription, opt => opt.MapFrom(x => x.Guide.Description));
 
             CreateMap<NodeDetailsViewModel, NodeUpdateViewModel>()
                 .ForPath(x => x.SocialMedia.TelegramLink, opt => opt.MapFrom(x => x.TelegramLink))
@@ -44,7 +45,8 @@ namespace Business.Profiles
                 .ForPath(x => x.Review.Comment, opt => opt.MapFrom(x => x.ReviewComment))
                 .ForPath(x => x.Review.Lock, opt => opt.MapFrom(x => x.ReviewLock))
                 .ForPath(x => x.Review.Difficulty, opt => opt.MapFrom(x => x.ReviewDifficulty))
-                .ForPath(x => x.Review.Prize, opt => opt.MapFrom(x => x.ReviewPrize));
+                .ForPath(x => x.Review.Prize, opt => opt.MapFrom(x => x.ReviewPrize))
+                .ForPath(x => x.Guide.Description, opt => opt.MapFrom(x => x.GuideDescription));
 
             CreateMap<NodeCreateViewModel, PostNodeRequestModel>();
             CreateMap<NodeUpdateViewModel, PutNodeRequestModel>();

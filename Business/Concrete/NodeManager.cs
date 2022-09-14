@@ -29,6 +29,7 @@ namespace Business.Concrete
             postNodeRequestModel.Hardware.NodeId = DummyNode.NodeId;
             postNodeRequestModel.SocialMedia.NodeId = DummyNode.NodeId;
             postNodeRequestModel.Review.NodeId = DummyNode.NodeId;
+            postNodeRequestModel.Guide.NodeId = DummyNode.NodeId;
 
             var jsonContent = JsonSerializer.Serialize(postNodeRequestModel);
 
