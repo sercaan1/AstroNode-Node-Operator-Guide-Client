@@ -9,6 +9,8 @@ using Web.Extensions;
 namespace Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [RedirectToLoginIfNotAuthorized]
+    [ValidateAntiForgeryToken]
     public class NodeController : Controller
     {
         private readonly INodeService _nodeService;
@@ -21,14 +23,12 @@ namespace Web.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        [RedirectToLoginIfNotAuthorized]
         public IActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(NodeCreateViewModel vm)
         {
             if (ModelState.IsValid)
@@ -49,7 +49,6 @@ namespace Web.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        [RedirectToLoginIfNotAuthorized]
         public async Task<IActionResult> ActiveNodes()
         {
             var getNodesResponse = await _nodeService.GetAllAsync();
@@ -64,7 +63,6 @@ namespace Web.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        [RedirectToLoginIfNotAuthorized]
         public async Task<IActionResult> DoneNodes()
         {
             var getNodesResponse = await _nodeService.GetAllAsync();
@@ -79,7 +77,6 @@ namespace Web.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        [RedirectToLoginIfNotAuthorized]
         public async Task<IActionResult> UpcomingNodes()
         {
             var getNodesResponse = await _nodeService.GetAllAsync();
@@ -94,7 +91,6 @@ namespace Web.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        [RedirectToLoginIfNotAuthorized]
         public async Task<IActionResult> NodeDetails(string id)
         {
             var getNodeDetailsResponse = await _nodeService.GetByIdAsync(new Guid(id));
@@ -107,7 +103,6 @@ namespace Web.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(string id)
         {
             var deleteNodeResponse = await _nodeService.DeleteAsync(new Guid(id));
@@ -121,7 +116,6 @@ namespace Web.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        [RedirectToLoginIfNotAuthorized]
         public async Task<IActionResult> Update(string id)
         {
             var getNodeResponse = await _nodeService.GetByIdAsync(new Guid(id));
@@ -135,7 +129,6 @@ namespace Web.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Update(NodeUpdateViewModel vm)
         {
             if (ModelState.IsValid)

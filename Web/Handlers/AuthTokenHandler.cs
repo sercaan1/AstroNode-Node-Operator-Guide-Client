@@ -13,10 +13,9 @@ namespace Web.Handlers
 
         protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
+            string token = _httpContextAccessor.HttpContext.Session.GetString("token");
 
-            string token = _httpContextAccessor.HttpContext.Session.GetString("Token");
-
-            if (string.IsNullOrEmpty(token))
+            if (!string.IsNullOrEmpty(token))
             {
                 request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
             }

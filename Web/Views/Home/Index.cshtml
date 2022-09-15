@@ -16,13 +16,13 @@
 
 <div class="row m-4">
     <div class="col-sm-4 text-center">
-        <a class="node-list-button" id="activeNodes">Active</a>
+        <a class="node-list-button active" data-selection="active">Active</a>
     </div>
     <div class="col-sm-4 text-center">
-        <a class="node-list-button" id="upcomingNodes">Upcoming</a>
+        <a class="node-list-button" data-selection="upcoming">Upcoming</a>
     </div>
     <div class="col-sm-4 text-center">
-        <a class="node-list-button" id="doneNodes">Done</a>
+        <a class="node-list-button" data-selection="done">Done</a>
     </div>
 </div>
 
@@ -32,53 +32,42 @@
 
 @section Scripts{
     <script>
-        window.addEventListener("load", () => {
-            $("#activeNodes").click();
-        });
+        const activateButton = (() => {
+            var buttons;
+            const bindEvents = () => {
+                buttons.forEach((item) => {
+                    item.addEventListener("click", (event) => {
+                        getNodes(event.target);
+                    });
+                });
+            };
+            const getNodes = (target) => {
+                $.ajax({
+                    url: "https://localhost:7269/Home/FilterNode",
+                    data: { selection: $(target).data("selection") },
+                    method: "GET",
+                    success: function (result) {
+                        buttons.forEach((item) => {
+                            $(item).removeClass("active");
+                        });
+                        $(target).addClass("active");
+                        $("#node-list-container").empty();
+                        $("#node-list-container").append(result);
+                    }
+                });
+            };
+            var init = () => {
+                getNodes(document.querySelector(".node-list-button.active"));
+                buttons = document.querySelectorAll(".node-list-button");
+                bindEvents();
+            };
+            return {
+                init: init
+            } 
+        })();
 
-        $("#activeNodes").click(() => {
-            $.ajax({
-                url: "https://localhost:7269/Home/FilterNode",
-                data: { selection: "active" },
-                method: "GET",
-                success: function (result) {
-                    $("#activeNodes").css("color", "#8971d0");
-                    $("#doneNodes").css("color", "#c4c1e0");
-                    $("#upcomingNodes").css("color", "#c4c1e0");
-                    $("#node-list-container").empty();
-                    $("#node-list-container").append(result);
-                }
-            });
-        });
-
-        $("#doneNodes").click(() => {
-            $.ajax({
-                url: "https://localhost:7269/Home/FilterNode",
-                data: { selection: "done" },
-                method: "GET",
-                success: function (result) {
-                    $("#doneNodes").css("color", "#8971d0");
-                    $("#activeNodes").css("color", "#c4c1e0");
-                    $("#upcomingNodes").css("color", "#c4c1e0");
-                    $("#node-list-container").empty();
-                    $("#node-list-container").append(result);
-                }
-            });
-        });
-
-        $("#upcomingNodes").click(() => {
-            $.ajax({
-                url: "https://localhost:7269/Home/FilterNode",
-                data: { selection: "upcoming" },
-                method: "GET",
-                success: function (result) {
-                    $("#upcomingNodes").css("color", "#8971d0");
-                    $("#activeNodes").css("color", "#c4c1e0");
-                    $("#doneNodes").css("color", "#c4c1e0");
-                    $("#node-list-container").empty();
-                    $("#node-list-container").append(result);
-                }
-            });
+        $(document).ready(() => {
+            activateButton.init();
         });
     </script>
 }

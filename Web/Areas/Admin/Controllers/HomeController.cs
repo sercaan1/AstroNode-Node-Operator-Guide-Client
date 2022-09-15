@@ -4,9 +4,9 @@ using Web.Attributes;
 namespace Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [RedirectToLoginIfNotAuthorized]
     public class HomeController : Controller
     {
-        [RedirectToLoginIfNotAuthorized]
         public IActionResult Index()
         {
             return View();

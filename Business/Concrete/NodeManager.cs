@@ -37,6 +37,7 @@ namespace Business.Concrete
             request.Content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
             var response = await httpClient.SendAsync(request);
+
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStreamAsync();
