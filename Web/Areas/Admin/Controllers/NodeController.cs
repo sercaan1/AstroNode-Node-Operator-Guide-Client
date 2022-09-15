@@ -10,7 +10,6 @@ namespace Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [RedirectToLoginIfNotAuthorized]
-    [ValidateAntiForgeryToken]
     public class NodeController : Controller
     {
         private readonly INodeService _nodeService;

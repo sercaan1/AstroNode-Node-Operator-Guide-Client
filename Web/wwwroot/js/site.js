@@ -1,4 +1,14 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿var searchInput = () => {
+    const searchBarText = document.getElementById("search-bar").value;
+    console.log(searchBarText);
 
-// Write your JavaScript code.
+    $.ajax({
+        url: "https://localhost:7269/Home/SearchNode",
+        method: "GET",
+        data: { letter: searchBarText },
+        success: function (result) {
+            $(".search-results").empty();
+            $(".search-results").append(result);
+        }
+    });
+}

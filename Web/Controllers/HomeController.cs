@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Business.Abstracts;
+using Common.Models.ViewModels.Nodes;
 using Common.Models.ViewModels.Users;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Serialization;
@@ -48,6 +49,21 @@ namespace Web.Controllers
             }
 
             return NotFound();
+        }
+
+        public async Task<IActionResult> SearchNode(string letter)
+        {
+            if (letter == null)
+            {
+                return Ok();
+            }
+            var filteredNodeNamesAndIds = (await _nodeService.GetAllAsync()).Data.Where(x => x.Name.ToLower().StartsWith(letter.ToLower())).Select(x => new NodeSearchedViewModel()
+            {
+                Id = x.Id,
+                Name = x.Name
+            }).ToList();
+
+            return PartialView("_SearchedNodes", filteredNodeNamesAndIds);
         }
 
         public IActionResult Login()

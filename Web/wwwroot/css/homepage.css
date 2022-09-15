@@ -1,4 +1,8 @@
-﻿.homepage-headline {
+﻿:root {
+    --var-light-text-color: rgb(204, 204, 204);
+}
+
+.homepage-headline {
     background-image: url(../img/logo.png);
     background-size: 100% 120%;
     color: #fdffcd;
@@ -6,22 +10,47 @@
     margin-bottom: 100px;
 }
 
-.how-it-works-title {
+.search-result-list {
+    list-style: none;
+    padding-left: 0;
+    max-height: 150px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.search-result-item {
+    text-align: center;
+    width: 100%;
+    margin-top: 10px;
+    border-radius: 5px;
+    border: 1px solid var(--var-light-text-color);
+}
+
+.search-result-item a {
+    text-decoration: none;
+    font-size: 1.25rem;
+    line-height: 1.2;
+    text-transform: uppercase;
+    width: 100%;
+    display: block;
+    padding: 5px 20px;
+    color: var(--var-light-text-color);
+}
+
+.search-result-item > a:hover {
+    border: 1px solid black;
     color: black;
-    font-size: 40px;
-    font-weight: 500;
-    margin-top: 50px;
-    margin-bottom: 10px;
 }
 
-.how-it-works-icon {
-    font-size: 30px;
+.search-container {
+    position: relative;
 }
 
-.how-it-works-subtitle {
-    font-size: 30px;
-    font-weight: 400;
-    margin: 10px 0px;
+.search-results {
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    z-index: 999;
 }
 
 .node-container {

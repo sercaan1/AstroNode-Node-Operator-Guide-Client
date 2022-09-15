@@ -21,8 +21,12 @@ body {
 
 /*-----------Navbar Css-------------*/
 .navbar-logo {
-    width: 40px;
-    border-radius: 50%;
+    width: 100px;
+}
+
+.navbar-container{
+    font-size: 16px;
+    font-weight: 600;
 }
 
 .search-form {
