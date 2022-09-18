@@ -1,11 +1,11 @@
 ﻿@model List<NodeSearchedViewModel>
 
 
-@foreach (var item in Model)
-{
-    <ul class="search-result-list">
+<ul class="search-result-list">
+    @foreach (var item in Model)
+    {
         <li class="search-result-item">
             <a asp-action="NodeDetails" asp-controller="Node" asp-route-id="@item.Id"> @item.Name</a>
         </li>
-    </ul>
-}
+    }
+</ul>

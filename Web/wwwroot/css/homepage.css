@@ -1,13 +1,6 @@
 ﻿:root {
-    --var-light-text-color: rgb(204, 204, 204);
-}
-
-.homepage-headline {
-    background-image: url(../img/logo.png);
-    background-size: 100% 120%;
-    color: #fdffcd;
-    background-repeat: no-repeat;
-    margin-bottom: 100px;
+    --var-hover-button-color: #8971d0;
+    --var-light-button-color: #c4c1e0;
 }
 
 .search-result-list {
@@ -21,25 +14,25 @@
 .search-result-item {
     text-align: center;
     width: 100%;
-    margin-top: 10px;
+    margin-top: 5px;
     border-radius: 5px;
-    border: 1px solid var(--var-light-text-color);
+    border: 1px solid var(--var-light-button-color);
 }
 
 .search-result-item a {
     text-decoration: none;
-    font-size: 1.25rem;
+    font-size: 1rem;
     line-height: 1.2;
     text-transform: uppercase;
     width: 100%;
     display: block;
     padding: 5px 20px;
-    color: var(--var-light-text-color);
+    color: var(--var-light-button-color);
 }
 
 .search-result-item > a:hover {
-    border: 1px solid black;
-    color: black;
+    border: 1px solid var(--var-hover-button-color);
+    color: var(--var-hover-button-color);
 }
 
 .search-container {
@@ -51,6 +44,14 @@
     top: 100%;
     width: 100%;
     z-index: 999;
+}
+
+.homepage-headline {
+    background-image: url(../img/logo.png);
+    background-size: 100% 120%;
+    color: #fdffcd;
+    background-repeat: no-repeat;
+    margin-bottom: 100px;
 }
 
 .node-container {
@@ -110,15 +111,15 @@
 .node-list-button {
     text-decoration: none;
     font-size: 24px;
-    color: #c4c1e0;
+    color: var(--var-light-button-color);
     font-weight: 500;
 }
 
 .node-list-button:hover {
     cursor: pointer;
-    color: #8971d0;
+    color: var(--var-hover-button-color);
 }
 
 .node-list-button.active {
-    color: #8971d0;
+    color: var(--var-hover-button-color);
 }
