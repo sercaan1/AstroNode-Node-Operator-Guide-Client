@@ -1,6 +1,8 @@
 ﻿:root {
-    --var-hover-button-color: #8971d0;
-    --var-light-button-color: #c4c1e0;
+    --var-hover-button-color: #f07810;
+    --var-light-button-color: #f1b963;
+    --var-whitish-color: #f7f7f7;
+    --var-blackish-color: #222831;
 }
 
 .search-result-list {
@@ -23,7 +25,6 @@
     text-decoration: none;
     font-size: 1rem;
     line-height: 1.2;
-    text-transform: uppercase;
     width: 100%;
     display: block;
     padding: 5px 20px;
@@ -47,11 +48,13 @@
 }
 
 .homepage-headline {
-    background-image: url(../img/logo.png);
+    background-image: url(../img/header.png);
     background-size: 100% 120%;
     color: #fdffcd;
     background-repeat: no-repeat;
     margin-bottom: 100px;
+    opacity: 0.8;
+    border-radius: 2.2%
 }
 
 .node-container {
@@ -117,9 +120,9 @@
 
 .node-list-button:hover {
     cursor: pointer;
-    color: var(--var-hover-button-color);
+    color: var(--var-hover-button-color) !important;
 }
 
 .node-list-button.active {
-    color: var(--var-hover-button-color);
+    color: var(--var-hover-button-color) !important;
 }

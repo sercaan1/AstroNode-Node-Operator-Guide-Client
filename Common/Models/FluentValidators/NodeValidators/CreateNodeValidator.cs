@@ -40,6 +40,8 @@ namespace Common.Models.FluentValidators.NodeValidators
             RuleFor(x => x.SocialMedia.TelegramLink).Must(uri => Uri.TryCreate(uri, UriKind.Absolute, out _)).When(x => !string.IsNullOrEmpty(x.SocialMedia.TelegramLink)).WithMessage("This field should be a valid http link");
 
             RuleFor(x => x.SocialMedia.WebPageLink).Must(uri => Uri.TryCreate(uri, UriKind.Absolute, out _)).When(x => !string.IsNullOrEmpty(x.SocialMedia.WebPageLink)).WithMessage("This field should be a valid http link");
+
+            RuleFor(x => x.Guide.Description).NotEmpty().WithMessage("This field is required");
         }
 
         private bool BeAValidDate(DateTime date)

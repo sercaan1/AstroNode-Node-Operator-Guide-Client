@@ -7,105 +7,131 @@
 <h1>Update Node</h1>
 
 <hr />
-<form asp-action="Update" asp-controller="Node" asp-area="Admin" class="fs-5" enctype="multipart/form-data">
-    <input type="hidden" asp-for="Id" />
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <div class="form-group mb-3">
-        <label asp-for="Name" class="form-label">Name</label>
-        <input asp-for="Name" class="form-control" />
-        <span asp-validation-for="Name" class="text-danger"></span>
-    </div>
-    <div class="form-group mb-3">
-        <label asp-for="ImageFile" class="form-label">Image</label>
-        <input asp-for="ImageFile" class="form-control" type="file" />
-        <span asp-validation-for="ImageFile.Length" class="text-danger"></span>
-        <span asp-validation-for="ImageFile.ContentType" class="text-danger"></span>
-    </div>
-    <div class="form-group mb-3">
-        <label asp-for="StartDate" class="form-label">Start Date</label>
-        <input type="date" asp-for="StartDate" class="form-control" />
-        <span asp-validation-for="StartDate" class="text-danger"></span>
-    </div>
-    <div class="form-group mb-3">
-        <label asp-for="EndDate" class="form-label">End Date</label>
-        <input type="date" asp-for="EndDate" class="form-control" />
-        <span asp-validation-for="EndDate" class="text-danger"></span>
-    </div>
-    <div class="form-group mb-3">
-        <label asp-for="Review.Comment" class="form-label">Node Description</label>
-        <textarea class="form-control" asp-for="Review.Comment"></textarea>
-        <span asp-validation-for="Review.Comment" class="text-danger"></span>
-    </div>
-    <div class="form-group mb-3">
-        <label asp-for="Review.Rate" class="form-label">Review Rate</label>
-        <input asp-for="Review.Rate" class="form-control" />
-        <span asp-validation-for="Review.Rate" class="text-danger"></span>
-    </div>
-    <div class="form-group mb-3">
-        <label asp-for="Review.Difficulty" class="form-label">Review Difficulty</label>
-        <input asp-for="Review.Difficulty" class="form-control" />
-        <span asp-validation-for="Review.Difficulty" class="text-danger"></span>
-    </div>
-    <div class="form-group mb-3">
-        <label asp-for="Review.Prize" class="form-label">Review Prize</label>
-        <input asp-for="Review.Prize" class="form-control" />
-        <span asp-validation-for="Review.Prize" class="text-danger"></span>
-    </div>
-    <div class="form-group mb-3">
-        <label asp-for="Review.Lock" class="form-label">Review Lock</label>
-        <input asp-for="Review.Lock" class="form-control" />
-        <span asp-validation-for="Review.Lock" class="text-danger"></span>
-    </div>
-    <div class="form-group mb-3">
-        <label asp-for="Hardware.CPU" class="form-label">CPU</label>
-        <input asp-for="Hardware.CPU" class="form-control" />
-        <span asp-validation-for="Hardware.CPU" class="text-danger"></span>
-    </div>
-    <div class="form-group mb-3">
-        <label asp-for="Hardware.RAM" class="form-label">RAM</label>
-        <input asp-for="Hardware.RAM" class="form-control" />
-        <span asp-validation-for="Hardware.RAM" class="text-danger"></span>
-    </div>
-    <div class="form-group mb-3">
-        <label asp-for="Hardware.Storage" class="form-label">Storage</label>
-        <input asp-for="Hardware.Storage" class="form-control" />
-        <span asp-validation-for="Hardware.Storage" class="text-danger"></span>
-    </div>
-    <div class="form-group mb-3">
-        <label asp-for="Hardware.DownloadSpeed" class="form-label">Download Speed</label>
-        <input asp-for="Hardware.DownloadSpeed" class="form-control" />
-        <span asp-validation-for="Hardware.DownloadSpeed" class="text-danger"></span>
-    </div>
-    <div class="form-group mb-3">
-        <label asp-for="SocialMedia.TwitterLink" class="form-label">Twitter Link</label>
-        <input asp-for="SocialMedia.TwitterLink" class="form-control" />
-        <span asp-validation-for="SocialMedia.TwitterLink" class="text-danger"></span>
-    </div>
-    <div class="form-group mb-3">
-        <label asp-for="SocialMedia.TelegramLink" class="form-label">Telegram Link</label>
-        <input asp-for="SocialMedia.TelegramLink" class="form-control" />
-        <span asp-validation-for="SocialMedia.TelegramLink" class="text-danger"></span>
-    </div>
-    <div class="form-group mb-3">
-        <label asp-for="SocialMedia.DiscordLink" class="form-label">Discord Link</label>
-        <input asp-for="SocialMedia.DiscordLink" class="form-control" />
-        <span asp-validation-for="SocialMedia.DiscordLink" class="text-danger"></span>
-    </div>
-    <div class="form-group mb-3">
-        <label asp-for="SocialMedia.WebPageLink" class="form-label">Web Page Link</label>
-        <input asp-for="SocialMedia.WebPageLink" class="form-control" />
-        <span asp-validation-for="SocialMedia.WebPageLink" class="text-danger"></span>
-    </div>
-    <div class="form-group mb-3">
-        <label asp-for="Guide.Description" class="form-label">Guide Link or Description</label>
-        <input asp-for="Guide.Description" class="form-control" />
-        <span asp-validation-for="Guide.Description" class="text-danger"></span>
-    </div>
-    <div class="form-group mb-3">
-        <input type="submit" value="Save" class="btn btn-primary" />
-    </div>
-</form>
+<div class="node-crud-container">
+    <form asp-action="Update" asp-controller="Node" asp-area="Admin" class="fs-5" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group mb-3">
+            <label asp-for="Name" class="form-label">Name</label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group mb-3">
+            <label asp-for="ImageFile" class="form-label">Image</label>
+            <input asp-for="ImageFile" class="form-control" type="file" />
+            <span asp-validation-for="ImageFile.Length" class="text-danger"></span>
+            <span asp-validation-for="ImageFile.ContentType" class="text-danger"></span>
+        </div>
+        <div class="form-group mb-3">
+            <label asp-for="StartDate" class="form-label">Start Date</label>
+            <input type="date" asp-for="StartDate" class="form-control" />
+            <span asp-validation-for="StartDate" class="text-danger"></span>
+        </div>
+        <div class="form-group mb-3">
+            <label asp-for="EndDate" class="form-label">End Date</label>
+            <input type="date" asp-for="EndDate" class="form-control" />
+            <span asp-validation-for="EndDate" class="text-danger"></span>
+        </div>
+        <div class="form-group mb-3">
+            <label asp-for="Review.Comment" class="form-label">Node Description</label>
+            <textarea id="editor" class="form-control" asp-for="Review.Comment"></textarea>
+            <span asp-validation-for="Review.Comment" class="text-danger"></span>
+        </div>
+        <div class="form-group mb-3">
+            <label asp-for="Review.Rate" class="form-label">Review Rate</label>
+            <input asp-for="Review.Rate" class="form-control" />
+            <span asp-validation-for="Review.Rate" class="text-danger"></span>
+        </div>
+        <div class="form-group mb-3">
+            <label asp-for="Review.Difficulty" class="form-label">Review Difficulty</label>
+            <input asp-for="Review.Difficulty" class="form-control" />
+            <span asp-validation-for="Review.Difficulty" class="text-danger"></span>
+        </div>
+        <div class="form-group mb-3">
+            <label asp-for="Review.Prize" class="form-label">Review Prize</label>
+            <input asp-for="Review.Prize" class="form-control" />
+            <span asp-validation-for="Review.Prize" class="text-danger"></span>
+        </div>
+        <div class="form-group mb-3">
+            <label asp-for="Review.Lock" class="form-label">Review Lock</label>
+            <input asp-for="Review.Lock" class="form-control" />
+            <span asp-validation-for="Review.Lock" class="text-danger"></span>
+        </div>
+        <div class="form-group mb-3">
+            <label asp-for="Hardware.CPU" class="form-label">CPU</label>
+            <input asp-for="Hardware.CPU" class="form-control" />
+            <span asp-validation-for="Hardware.CPU" class="text-danger"></span>
+        </div>
+        <div class="form-group mb-3">
+            <label asp-for="Hardware.RAM" class="form-label">RAM</label>
+            <input asp-for="Hardware.RAM" class="form-control" />
+            <span asp-validation-for="Hardware.RAM" class="text-danger"></span>
+        </div>
+        <div class="form-group mb-3">
+            <label asp-for="Hardware.Storage" class="form-label">Storage</label>
+            <input asp-for="Hardware.Storage" class="form-control" />
+            <span asp-validation-for="Hardware.Storage" class="text-danger"></span>
+        </div>
+        <div class="form-group mb-3">
+            <label asp-for="Hardware.DownloadSpeed" class="form-label">Download Speed</label>
+            <input asp-for="Hardware.DownloadSpeed" class="form-control" />
+            <span asp-validation-for="Hardware.DownloadSpeed" class="text-danger"></span>
+        </div>
+        <div class="form-group mb-3">
+            <label asp-for="SocialMedia.TwitterLink" class="form-label">Twitter Link</label>
+            <input asp-for="SocialMedia.TwitterLink" class="form-control" />
+            <span asp-validation-for="SocialMedia.TwitterLink" class="text-danger"></span>
+        </div>
+        <div class="form-group mb-3">
+            <label asp-for="SocialMedia.TelegramLink" class="form-label">Telegram Link</label>
+            <input asp-for="SocialMedia.TelegramLink" class="form-control" />
+            <span asp-validation-for="SocialMedia.TelegramLink" class="text-danger"></span>
+        </div>
+        <div class="form-group mb-3">
+            <label asp-for="SocialMedia.DiscordLink" class="form-label">Discord Link</label>
+            <input asp-for="SocialMedia.DiscordLink" class="form-control" />
+            <span asp-validation-for="SocialMedia.DiscordLink" class="text-danger"></span>
+        </div>
+        <div class="form-group mb-3">
+            <label asp-for="SocialMedia.WebPageLink" class="form-label">Web Page Link</label>
+            <input asp-for="SocialMedia.WebPageLink" class="form-control" />
+            <span asp-validation-for="SocialMedia.WebPageLink" class="text-danger"></span>
+        </div>
+        <div class="form-group mb-3">
+            <label asp-for="Guide.Description" class="form-label">Guide Link or Description</label>
+            <input asp-for="Guide.Description" class="form-control" id="editor" />
+            <span asp-validation-for="Guide.Description" class="text-danger"></span>
+        </div>
+        <div class="form-group mb-3">
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
+    </form>
 
-<div>
-    <a asp-action="Index" asp-controller="Home">Back</a>
+    <div>
+        <a asp-action="Index" asp-controller="Home">Back</a>
+    </div>
 </div>
+
+@section Scripts {
+    <script>
+        tinymce.init({
+            selector: '#editor',
+            height: 300,
+            plugins: [
+                'advlist', 'autolink', 'link', 'image', 'lists', 'charmap', 'preview',
+                'anchor', 'pagebreak',
+                'searchreplace', 'wordcount', 'visualblocks', 'visualchars', 'code',
+                'fullscreen', 'insertdatetime',
+                'media', 'table', 'emoticons', 'template', 'help'
+            ],
+            toolbar: 'undo redo | styles | bold italic | alignleft aligncenter alignright alignjustify | ' +
+                'bullist numlist outdent indent | link image | print preview media fullscreen | ' +
+                'forecolor backcolor emoticons | help',
+            menu: {
+                menubar: 'favs file edit view insert format tools table help',
+                content_css: 'css/content.css'
+            },
+            fontsize_formats:
+                "8pt 9pt 10pt 11pt 12pt 14pt 18pt 24pt 30pt 36pt 48pt 60pt 72pt 96pt"
+        });
+    </script>
+}

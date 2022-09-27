@@ -11,7 +11,7 @@ namespace Web.Controllers
         {
             _nodeService = nodeService;
         }
-        public async Task<IActionResult> NodeDetails(string id)
+        public async Task<IActionResult> Details(string id)
         {
             var getNodeDetailsResponse = await _nodeService.GetByIdAsync(new Guid(id));
             if (getNodeDetailsResponse.IsSuccess)

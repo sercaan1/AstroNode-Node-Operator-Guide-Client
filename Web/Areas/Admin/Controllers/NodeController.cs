@@ -90,7 +90,7 @@ namespace Web.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> NodeDetails(string id)
+        public async Task<IActionResult> Details(string id)
         {
             var getNodeDetailsResponse = await _nodeService.GetByIdAsync(new Guid(id));
             if (getNodeDetailsResponse.IsSuccess)
@@ -140,7 +140,7 @@ namespace Web.Areas.Admin.Controllers
 
                 if (updateNodeResponse.IsSuccess)
                 {
-                    return RedirectToAction("NodeDetails", "Node", new { id = vm.Id });
+                    return RedirectToAction("Details", "Node", new { id = vm.Id });
                 }
 
                 return NotFound(updateNodeResponse.Message);
