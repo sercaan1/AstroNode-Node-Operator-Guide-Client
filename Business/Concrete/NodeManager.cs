@@ -98,10 +98,11 @@ namespace Business.Concrete
             putNodeRequestModel.Hardware.NodeId = vm.Id;
             putNodeRequestModel.SocialMedia.NodeId = vm.Id;
             putNodeRequestModel.Review.NodeId = vm.Id;
+            putNodeRequestModel.Guide.NodeId = vm.Id;
 
             var jsonContent = JsonSerializer.Serialize(putNodeRequestModel);
 
-            var request = new HttpRequestMessage(HttpMethod.Put, "Node/" + vm.Id);
+            var request = new HttpRequestMessage(HttpMethod.Put, "Node");
 
             request.Content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 

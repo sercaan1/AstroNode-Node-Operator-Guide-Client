@@ -53,7 +53,7 @@
     color: #fdffcd;
     background-repeat: no-repeat;
     margin-bottom: 100px;
-    opacity: 0.8;
+    opacity: 1;
     border-radius: 2.2%
 }
 
@@ -108,7 +108,7 @@
 }
 
 .fa-wrench {
-    color: #38598b;
+    color: #eaf6f6;
 }
 
 .node-list-button {
